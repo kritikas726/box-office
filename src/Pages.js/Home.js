@@ -9,22 +9,27 @@ const Home = () => {
   const [results, setResults] = useState(null);
   const [searchOption, setSearchOption] = useState('shows');
   const isShowSearch = searchOption === 'shows';
+
   const onInputChange = ev => {
     setInput(ev.target.value);
   };
+
   const onRadioChange = ev => {
     setSearchOption(ev.target.value);
   };
+
   const onSearch = () => {
     apiGet(`/search/${searchOption}?q=${input}`).then(result => {
       setResults(result);
     });
   };
+
   const onKeyDown = ev => {
     if (ev.keyCode === 13) {
       onSearch();
     }
   };
+
   const renderResults = () => {
     if (results && results.length === 0) {
       return <div>No Results</div>;
@@ -38,6 +43,7 @@ const Home = () => {
     }
     return null;
   };
+
   return (
     <MainPageLayout>
       <input
