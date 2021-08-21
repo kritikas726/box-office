@@ -13,11 +13,12 @@ const Starred = () => {
 
   useEffect(() => {
     if (starred && starred.length > 0) {
-      const promises = starred.map(showId => apiGet(`/show/${showId}`));
+      const promises = starred.map(showId => apiGet(`/shows/${showId}`));
 
       Promise.all(promises)
         .then(apiDate => apiDate.map(show => ({ show })))
         .then(results => {
+          console.log('results', results);
           setShows(results);
           setIsLoading(false);
         })
